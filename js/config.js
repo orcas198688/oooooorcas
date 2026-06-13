@@ -4,7 +4,7 @@
 const worksData = [
   {
     title: '成片纸新娘',
-    description: '古风婚礼题材短片作品',
+    description: '志怪题材短片',
     videoSrc: 'videos/成片纸新娘.mp4',
     thumbnail: 'thumbnails/成片纸新娘.png',
     tags: ['古风', '婚礼'],
