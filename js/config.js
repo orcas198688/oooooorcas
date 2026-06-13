@@ -17,8 +17,8 @@ const worksData = [
     tags: ['志怪', '创意'],
   },
   {
-    title: '武汉之旅',
-    description: '武汉城市旅行记录短片',
+    title: '武汉之旅3A游戏DEMO',
+    description: '3A 游戏概念短片',
     videoSrc: 'videos/武汉之旅.mp4',
     thumbnail: 'thumbnails/武汉之旅.svg',
     tags: ['旅行', '城市'],
