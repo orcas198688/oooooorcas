@@ -1,3 +1,17 @@
+// ===== 导航栏滚动效果 =====
+const header = document.querySelector('.header');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (scrollY > 40) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+  lastScroll = scrollY;
+}, { passive: true });
+
 // ===== 渲染作品网格 =====
 (function renderWorks() {
   const grid = document.getElementById('worksGrid');
