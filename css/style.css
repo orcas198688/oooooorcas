@@ -622,16 +622,9 @@ img { max-width: 100%; display: block; }
 /* Neon glow accent */
 @keyframes kf-neon{0%,100%{text-shadow:0 0 8px var(--accent),0 0 20px var(--accent)}50%{text-shadow:0 0 16px var(--accent),0 0 40px var(--accent),0 0 80px var(--accent)}}
 
-/* ===== Work card reveal (using Intersection Observer) ===== */
+/* ===== Work card scroll reveal ===== */
 .work-card {
-  opacity: 0;
-  transform: translateY(30px);
   transition: opacity .6s ease, transform .6s ease, box-shadow .5s, border-color .5s;
-}
-
-.work-card.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* ===== Responsive ===== */
