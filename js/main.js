@@ -1,15 +1,32 @@
+// ===== Initialize FX background effects =====
+(function initFX() {
+  if (typeof HPX === 'undefined') return;
+  const fxEls = document.querySelectorAll('[data-fx]');
+  const instances = [];
+  fxEls.forEach(el => {
+    const name = el.getAttribute('data-fx');
+    if (HPX[name]) {
+      const inst = HPX[name](el);
+      instances.push(inst);
+    }
+  });
+  // cleanup on page hide
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      instances.forEach(inst => { if (inst.stop) inst.stop(); });
+    }
+  });
+})();
+
 // ===== 导航栏滚动效果 =====
 const header = document.querySelector('.header');
-let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  if (scrollY > 40) {
+  if (window.scrollY > 40) {
     header.classList.add('scrolled');
   } else {
     header.classList.remove('scrolled');
   }
-  lastScroll = scrollY;
 }, { passive: true });
 
 // ===== 渲染作品网格 =====
@@ -18,9 +35,9 @@ window.addEventListener('scroll', () => {
   if (!grid || !worksData) return;
 
   grid.innerHTML = worksData.map((work, index) => `
-    <div class="work-card" data-index="${index}">
+    <div class="work-card anim-parallax-tilt" data-index="${index}">
       <img class="work-thumb" src="${work.thumbnail}" alt="${work.title}"
-           onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22640%22 height=%22360%22><rect fill=%22%23333%22 width=%22640%22 height=%22360%22/><text fill=%22%23888%22 font-size=%2220%22 x=%22250%22 y=%22190%22>${encodeURIComponent(work.title)}</text></svg>'">
+           onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22640%22 height=%22360%22><rect fill=%22%230a1130%22 width=%22640%22 height=%22360%22/><text fill=%22%236a7a9e%22 font-size=%2220%22 x=%22250%22 y=%22190%22>${encodeURIComponent(work.title)}</text></svg>'">
       <div class="work-play-icon"></div>
       <div class="work-info">
         <h3 class="work-title">${work.title}</h3>
@@ -49,13 +66,10 @@ const video = document.getElementById('modalVideo');
 const modalTitle = document.getElementById('modalTitle');
 const modalDesc = document.getElementById('modalDesc');
 
-let currentVideoSrc = '';
-
 function openModal(index) {
   const work = worksData[index];
   if (!work) return;
 
-  currentVideoSrc = work.videoSrc;
   modalTitle.textContent = work.title;
   modalDesc.textContent = work.description;
   video.src = work.videoSrc;
@@ -64,7 +78,6 @@ function openModal(index) {
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 
-  // 加载完成后自动播放
   video.onloadeddata = () => {
     video.play().catch(() => {});
   };
@@ -75,7 +88,6 @@ function closeModal() {
   document.body.style.overflow = '';
   video.pause();
   video.src = '';
-  currentVideoSrc = '';
 }
 
 closeBtn.addEventListener('click', closeModal);
@@ -91,7 +103,7 @@ document.addEventListener('keydown', (e) => {
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('.nav-link');
 
-const observer = new IntersectionObserver((entries) => {
+const navObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       navLinks.forEach(link => {
@@ -99,27 +111,23 @@ const observer = new IntersectionObserver((entries) => {
       });
     }
   });
-}, {
-  rootMargin: '-40% 0px -55% 0px',
-});
+}, { rootMargin: '-40% 0px -55% 0px' });
 
-sections.forEach(s => observer.observe(s));
+sections.forEach(s => navObserver.observe(s));
 
-// ===== 滚动渐入动画 =====
-const revealEls = document.querySelectorAll('.reveal');
+// ===== 滚动渐入动画 (work cards) =====
+const workCards = document.querySelectorAll('.work-card');
 
-const revealObserver = new IntersectionObserver((entries) => {
+const cardObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
+      cardObserver.unobserve(entry.target);
     }
   });
-}, {
-  threshold: 0.15,
-});
+}, { threshold: 0.1 });
 
-revealEls.forEach(el => revealObserver.observe(el));
+workCards.forEach(el => cardObserver.observe(el));
 
 // ===== 移动端菜单 =====
 const menuToggle = document.querySelector('.menu-toggle');
@@ -129,7 +137,6 @@ menuToggle.addEventListener('click', () => {
   navLinksContainer.classList.toggle('open');
 });
 
-// 点击导航链接后关闭菜单
 navLinksContainer.addEventListener('click', () => {
   navLinksContainer.classList.remove('open');
 });

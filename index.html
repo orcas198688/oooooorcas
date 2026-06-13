@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的作品集</title>
+  <title>Orcas · 作品集</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
   <!-- 导航栏 -->
   <header class="header">
     <nav class="nav container">
-      <a href="#hero" class="logo">Portfolio</a>
+      <a href="#hero" class="logo">Orcas</a>
       <ul class="nav-links">
         <li><a href="#hero" class="nav-link active">首页</a></li>
         <li><a href="#about" class="nav-link">关于</a></li>
@@ -26,12 +26,12 @@
 
   <main>
     <!-- Hero -->
-    <section id="hero" class="section hero">
+    <section id="hero" class="section hero" data-fx="gradient-blob">
       <div class="container hero-content">
-        <h1 class="hero-title reveal">你好，我是 <span class="highlight">Orcas</span></h1>
-        <p class="hero-subtitle reveal">影像创作者 · 全栈开发者</p>
-        <p class="hero-desc reveal">用镜头创造视觉，用代码实现想象</p>
-        <div class="hero-cta reveal">
+        <h1 class="hero-title anim-rise-in">你好，我是 <span class="gradient-text">Orcas</span></h1>
+        <p class="hero-subtitle anim-blur-in" style="animation-delay:0.15s">影像创作者 · 全栈开发者</p>
+        <p class="hero-desc anim-blur-in" style="animation-delay:0.3s">用镜头创造视觉，用代码实现想象</p>
+        <div class="hero-cta anim-fade-up" style="animation-delay:0.45s">
           <a href="#works" class="btn btn-primary">查看作品</a>
           <a href="#contact" class="btn btn-secondary">联系我</a>
         </div>
@@ -39,10 +39,10 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="section about">
+    <section id="about" class="section about" data-fx="constellation">
       <div class="container">
-        <h2 class="section-title reveal">关于我</h2>
-        <div class="about-content reveal">
+        <h2 class="section-title anim-fade-up">关于我</h2>
+        <div class="about-content anim-fade-up" style="animation-delay:0.15s">
           <div class="about-text">
             <p>我是 Orcas，一名横跨创作与技术的制作者。</p>
             <p>影像方面：从实拍记录到风格化短片，精通剪辑调色、视觉特效与三维动画，追求每一帧的视觉质感。</p>
@@ -50,7 +50,7 @@
             <p>对我而言，艺术与技术从不冲突——用创意定义方向，用技术实现落地。</p>
             <p>这个页面汇集了我的部分作品，欢迎交流。</p>
           </div>
-          <div class="about-tags">
+          <div class="about-tags anim-stagger-list">
             <span class="tag">3D 动画</span>
             <span class="tag">程序开发</span>
             <span class="tag">视频剪辑</span>
@@ -63,8 +63,8 @@
     <!-- Works -->
     <section id="works" class="section works">
       <div class="container">
-        <h2 class="section-title reveal">作品展示</h2>
-        <p class="section-desc reveal">点击封面观看完整视频</p>
+        <h2 class="section-title anim-fade-up">作品展示</h2>
+        <p class="section-desc anim-fade-up" style="animation-delay:0.1s">点击封面观看完整视频</p>
         <div class="works-grid" id="worksGrid">
           <!-- 由 config.js 动态渲染 -->
         </div>
@@ -74,9 +74,9 @@
     <!-- Contact -->
     <section id="contact" class="section contact">
       <div class="container">
-        <h2 class="section-title reveal">联系我</h2>
-        <p class="section-desc reveal">欢迎合作与交流</p>
-        <div class="contact-links reveal">
+        <h2 class="section-title anim-fade-up">联系我</h2>
+        <p class="section-desc anim-fade-up" style="animation-delay:0.1s">欢迎合作与交流</p>
+        <div class="contact-links anim-stagger-list">
           <a href="mailto:176773017@qq.com" class="contact-item">📧 176773017@qq.com</a>
           <a href="#" class="contact-item">📺 Bilibili</a>
           <a href="#" class="contact-item">📹 YouTube</a>
@@ -108,6 +108,9 @@
   </footer>
 
   <script src="js/config.js"></script>
+  <script src="js/fx/_util.js"></script>
+  <script src="js/fx/gradient-blob.js"></script>
+  <script src="js/fx/constellation.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
