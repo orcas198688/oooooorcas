@@ -45,10 +45,10 @@ const worksData = [
     tags: ['游戏', '概念短片'],
   },
   {
-    title: '5月4日',
-    description: '日常记录短片',
-    videoSrc: 'videos/5月4日 (1).mp4',
-    thumbnail: 'thumbnails/5月4日.svg',
-    tags: ['日常'],
+    title: '人物唱歌视频',
+    description: '唱歌表演短片',
+    videoSrc: 'videos/人物唱歌视频.mp4',
+    thumbnail: 'thumbnails/人物唱歌视频.svg',
+    tags: ['唱歌', '表演'],
   },
 ];
