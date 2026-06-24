@@ -13,3 +13,6 @@ Thumbs.db
 # Claude local config
 .claude/
 简历-黄陈.html
+
+# Large thumbnail PNGs (SVG used for deployment)
+thumbnails/*.png
